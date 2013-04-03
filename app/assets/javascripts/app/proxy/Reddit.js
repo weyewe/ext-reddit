@@ -2,6 +2,17 @@ Ext.define('AM.proxy.Reddit', {
     extend: 'Ext.data.proxy.JsonP',
     alias: 'proxy.reddit',
     
+// url: urlInit + "r/" + newSub + "/" + C.Sorting.get() + urlLimitEnd,
+// http://www.reddit.com/r/nsfw/hot.json?limit=30&jsonp=?
+// currentView = 1,
+// editingSubs = false,
+// urlInit = "http://www.reddit.com/",
+// urlEnd = ".json?jsonp=?",
+// urlLimitEnd = ".json?limit=30&jsonp=?",
+// loadedLinks = {},
+// replies = {},
+// showingMenu = false,
+
     config: {
         // This is the url we always query when searching for tweets
         url: 'http://search.twitter.com/search.json',

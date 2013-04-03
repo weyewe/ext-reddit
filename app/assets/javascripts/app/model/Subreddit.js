@@ -6,21 +6,22 @@ Ext.define('AM.model.Subreddit', {
         { name: "id" },
         { name: "name", type: "string" }
     ],
+ 
 
     proxy: {
         type: 'localstorage',
         id  : 'subreddits-collection'
-    }
+    } 
 
-  // hasMany: {
-    //     model: "AM.model.Post",
-    //     name : 'posts',
-    //     filterProperty: 'query',
-    //     store: {
-    //         pageSize       : 50,
-    //         remoteFilter   : true,
-    //         clearOnPageLoad: false
-    //     }
-    // },
+		// hasMany: {
+		// 	model: "AM.model.Post",
+		// 	name : 'posts',
+		// 	filterProperty: 'query',
+		// 	store: {
+		// 		pageSize       : 50,
+		// 		remoteFilter   : true,
+		// 		clearOnPageLoad: false
+		// 	}
+		// }
 
 });

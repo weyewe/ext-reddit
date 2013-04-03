@@ -13,7 +13,11 @@ Ext.define('AM.controller.Subreddits', {
 		{
 			ref: 'list',
 			selector: 'subredditgrid'
-		} 
+		},
+		{
+			ref : 'viewport',
+			selector : 'vp'
+		}
 	],
 
   init: function() {
@@ -145,13 +149,53 @@ Ext.define('AM.controller.Subreddits', {
   },
 
   selectionChange: function(selectionModel, selections) {
+		var me = this; 
     var grid = this.getList();
+
+		var record = this.getList().getSelectedObject();
+		
+		if(!record){
+			return; 
+		}
 
     if (selections.length > 0) {
       grid.enableRecordButtons();
     } else {
       grid.disableRecordButtons();
     }
+
+
+		var sampleUrl = 'http://www.reddit.com/r/nsfw/hot.json';
+		
+		me.getViewport().setLoading( true ) ;
+		Ext.data.JsonP.request({
+		    url: sampleUrl ,
+				callbackKey : 'jsonp',
+		    params: {
+					format: 'json' 
+				},
+		    success: function(result, request ) {
+					console.log("It is successful");
+					me.getViewport().setLoading( false ) ;
+					// me.currentUser  = null; 
+					// localStorage.removeItem('currentUser');
+					// 
+					// me.showLoginForm();
+					// window.location.reload(); 
+				
+		    },
+		    failure: function(result, request ) {
+					console.log("It is failure");
+					me.getViewport().setLoading( false ) ;
+						// me.getViewport().setLoading( false ) ;
+						// Ext.Msg.alert("Logout Error", "Can't Logout");
+						// window.location.reload(); 
+		    }
+		});
+		
+		
+		// load the store for the post grid 
+
   }
 
 });
