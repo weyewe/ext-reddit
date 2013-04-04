@@ -57,6 +57,7 @@ Ext.define('AM.store.Posts', {
 
 
 						var responseText=  result.responseText; 
+						
 						// console.log("The result: " ) ;
 						// console.log( result );
 

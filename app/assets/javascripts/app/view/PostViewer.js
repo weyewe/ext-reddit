@@ -23,8 +23,38 @@ Ext.define('AM.view.PostViewer', {
                 '<div class="post-data">',
                     '<h3 class="post-title">{title:this.defaultTitle}</h3>',
                 '</div>',
-                '<div class="post-body" style="text-align:center;"><img style="width:80%;" src="{url:this.defaultUrl}" /></div>',
+								
+                '<div class="post-body" style="text-align:center;">',
+										'<tpl if="is_normal_image_link == true">',
+											'<img style="width:80%;" src="{url:this.defaultUrl}" />',
+										'</tpl>',
+										
+										'<tpl if="is_normal_image_link == false">',
+											'{parsed_images:this.showParsedImages}',
+										'</tpl>',
+										
+								'</div>',
                 {
+										showParsedImages: function(parsed_images){
+											if( parsed_images.length ===  0){
+												return "<b>NO IMAGES</b>";
+											}else{
+												
+												// console.log("FINAL PARSED IMAGES");
+												// console.log( parsed_images ) ;
+												var images_string = '';
+												for(var i = 0; i < parsed_images.length; i++){
+													var imgUrl = parsed_images[i];
+													// console.log("for i = " + i + " The image: " + imgUrl);
+													
+													var string = '<img style="width:80%;" src="' + imgUrl + '" />'  + " <br />";
+													images_string = images_string + string;
+												}
+												return images_string; 
+												// console.log("The extracted images: " + images_string);
+												// return "<b>There is SOME IMAGES</b>";
+											}
+										},
 	
 										defaultTitle : function(title){
 											return title? title : 'Select a post';
@@ -59,9 +89,17 @@ Ext.define('AM.view.PostViewer', {
      * @param {Ext.data.Model} rec The record
      */
     setActive: function(rec) {
-        this.active = rec;
+				if(rec.get('is_normal_image_link') === false ){
+					var parsed_images = rec.get('parsed_images');
+					// console.log("The parsed images");
+					// console.log(parsed_images);
+				}
+	
+				this.active = rec;
         this.update(rec.data);
     },
+
+	 
 
     /**
      * Create the top toolbar

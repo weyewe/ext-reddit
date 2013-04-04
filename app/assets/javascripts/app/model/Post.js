@@ -12,7 +12,9 @@ Ext.define('AM.model.Post', {
 			{name: "title",    	 		type: "string"},
 			{name: "name",    	 		type: "string"},
 			{name: "domain",   	  	type: "string"},
-			{name: "is_normal_image_link",  type: 'boolean', defaultValue: true  } 
+			{name: "is_normal_image_link",  type: 'boolean', defaultValue: true  } ,
+			
+			{ name: 'parsed_images', type: 'auto' }  
     ],
 
 		proxy: {
