@@ -1,23 +1,23 @@
 Ext.define('AM.controller.Subreddits', {
   extend: 'Ext.app.Controller',
 
-  stores: ['Subreddits'],
-  models: ['Subreddit'],
+  stores: ['Subreddits', 'Posts'],
+  models: ['Subreddit', 'Post'],
 
   views: [
     'subreddit.Form',
-    'SubRedditGrid'
+    'SubRedditGrid' 
   ],
 
   	refs: [
-		{
-			ref: 'list',
-			selector: 'subredditgrid'
-		},
-		{
-			ref : 'viewport',
-			selector : 'vp'
-		}
+			{
+				ref: 'list',
+				selector: 'subredditgrid'
+			},
+			{
+				ref : 'viewport',
+				selector : 'vp'
+			}
 	],
 
   init: function() {
@@ -154,9 +154,7 @@ Ext.define('AM.controller.Subreddits', {
 
 		var record = this.getList().getSelectedObject();
 		
-		if(!record){
-			return; 
-		}
+		if(!record ){ return;  }
 
     if (selections.length > 0) {
       grid.enableRecordButtons();
@@ -164,37 +162,19 @@ Ext.define('AM.controller.Subreddits', {
       grid.disableRecordButtons();
     }
 
+		if(!record.get("name") || record.get("name").length == 0){ return; }
 
-		var sampleUrl = 'http://www.reddit.com/r/nsfw/hot.json';
-		
-		me.getViewport().setLoading( true ) ;
-		Ext.data.JsonP.request({
-		    url: sampleUrl ,
-				callbackKey : 'jsonp',
-		    params: {
-					format: 'json' 
-				},
-		    success: function(result, request ) {
-					console.log("It is successful");
-					me.getViewport().setLoading( false ) ;
-					// me.currentUser  = null; 
-					// localStorage.removeItem('currentUser');
-					// 
-					// me.showLoginForm();
-					// window.location.reload(); 
-				
-		    },
-		    failure: function(result, request ) {
-					console.log("It is failure");
-					me.getViewport().setLoading( false ) ;
-						// me.getViewport().setLoading( false ) ;
-						// Ext.Msg.alert("Logout Error", "Can't Logout");
-						// window.location.reload(); 
-		    }
-		});
+
+
 		
 		
-		// load the store for the post grid 
+		// before=t3_1bjgsv
+		
+		// me.getViewport().setLoading( true ) ;
+		me.getPostsStore().populateStore('', me.getViewport() , record ); 
+		
+		
+		 
 
   }
 

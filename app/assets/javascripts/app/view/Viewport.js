@@ -7,37 +7,21 @@ Ext.define("AM.view.Viewport" , {
 	},
 	
 	items  : [
-		// {
-		// 	html : "This is subreddit",
-		// 	xtype : 'panel',
-		// 	region : 'west',
-		// 	flex: 1
-		// },
 		{
 			xtype : 'subredditgrid',
 			region : 'west',
 			flex : 2
 		},
 		{
-			html : "This is post",
-			xtype : 'panel',
-			region : 'center',
-			flex : 3
-		},
-		{
-			html : "This is post detail",
-			xtype : 'panel',
+			xtype : 'postgrid',
 			region : 'east',
-			flex : 5
-		}
+			flex : 2
+		},
 		
-		// {
-		// 	xtype : 'postgrid',
-		// 	region : 'center'
-		// },
-		// {
-		// 	xtype : 'postviewer',
-		// 	region : 'east'
-		// }
+		{
+			xtype : 'postviewer',
+			region : 'center',
+			flex : 5 
+		}
 	]
 });

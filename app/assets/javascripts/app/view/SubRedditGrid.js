@@ -28,10 +28,7 @@ Ext.define('AM.view.SubRedditGrid' ,{
 
 		this.tbar = [this.addObjectButton, this.deleteObjectButton ];
 		this.bbar = Ext.create("Ext.PagingToolbar", {
-			store	: this.store, 
-			displayInfo: true,
-			displayMsg: 'Displaying  {0} - {1} of {2}',
-			emptyMsg: "No topics to display" 
+			store	: this.store
 		});
 
 		this.callParent(arguments);

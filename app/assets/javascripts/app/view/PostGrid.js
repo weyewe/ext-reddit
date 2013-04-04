@@ -3,36 +3,35 @@ Ext.define('AM.view.PostGrid' ,{
   	alias : 'widget.postgrid',
 
   	store: 'Posts', 
-		title: 'Subreddit',
+		title: 'Posts',
  
 
 	initComponent: function() {
 		this.columns = [
-			{ header: 'Name', dataIndex: 'name', flex:  1} 
+			{ header: 'title', dataIndex: 'title', flex:  1} 
 		];
 
-		this.addObjectButton = new Ext.Button({
-			text: 'Add',
-			action: 'addObject'
+		this.prevObjectButton = new Ext.Button({
+			text: 'Prev',
+			action: 'prevObject'
 		});
  
-		this.deleteObjectButton = new Ext.Button({
-			text: 'Delete',
-			action: 'deleteObject',
-			disabled: true
+		this.nextObjectButton = new Ext.Button({
+			text: 'Next',
+			action: 'nextObject' 
 		});
 		
  
 
 
 
-		this.tbar = [this.addObjectButton, this.deleteObjectButton ];
-		this.bbar = Ext.create("Ext.PagingToolbar", {
-			store	: this.store, 
-			displayInfo: true,
-			displayMsg: 'Displaying  {0} - {1} of {2}',
-			emptyMsg: "No topics to display" 
-		});
+		this.bbar = [this.prevObjectButton, '->', this.nextObjectButton ];
+		// this.bbar = Ext.create("Ext.PagingToolbar", {
+		// 	store	: this.store, 
+		// 	displayInfo: true,
+		// 	displayMsg: 'Displaying  {0} - {1} of {2}',
+		// 	emptyMsg: "No topics to display" 
+		// });
 
 		this.callParent(arguments);
 	},
@@ -44,10 +43,10 @@ Ext.define('AM.view.PostGrid' ,{
 	},
 
 	enableRecordButtons: function() {
-		this.deleteObjectButton.enable();
+		// this.deleteObjectButton.enable();
 	},
 
 	disableRecordButtons: function() {
-		this.deleteObjectButton.disable();
+		// this.deleteObjectButton.disable();
 	}
 });
