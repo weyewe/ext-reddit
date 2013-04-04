@@ -47,7 +47,7 @@ Ext.define('AM.view.PostViewer', {
 													var imgUrl = parsed_images[i];
 													// console.log("for i = " + i + " The image: " + imgUrl);
 													
-													var string = '<img style="width:80%;" src="' + imgUrl + '" />'  + " <br />";
+													var string = '<img style="width:60%;" src="' + imgUrl + '" />'  + " <br />";
 													images_string = images_string + string;
 												}
 												return images_string; 
