@@ -8,7 +8,7 @@ Ext.define('AM.view.PostGrid' ,{
 
 	initComponent: function() {
 		this.columns = [
-			{ header: 'title', dataIndex: 'title', flex:  1} 
+			{ header: 'title', dataIndex: 'title', sortable:false,  flex:  1} 
 		];
 
 		this.prevObjectButton = new Ext.Button({

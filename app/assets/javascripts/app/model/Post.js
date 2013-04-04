@@ -11,7 +11,8 @@ Ext.define('AM.model.Post', {
 			{name: "url",    		 		type: "string"}, 
 			{name: "title",    	 		type: "string"},
 			{name: "name",    	 		type: "string"},
-			{name: "domain",   	  	type: "string"} 
+			{name: "domain",   	  	type: "string"},
+			{name: "is_normal_image_link",  type: 'boolean', defaultValue: true  } 
     ],
 
 		proxy: {

@@ -10,7 +10,7 @@ Ext.define("AM.view.Viewport" , {
 		{
 			xtype : 'subredditgrid',
 			region : 'west',
-			flex : 2
+			flex : 1
 		},
 		{
 			xtype : 'postgrid',

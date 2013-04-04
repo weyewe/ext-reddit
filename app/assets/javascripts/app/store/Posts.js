@@ -64,11 +64,13 @@ Ext.define('AM.store.Posts', {
 
 						if( result.data.children.length == 0  ){
 							Ext.Msg.alert("Load Failure", "Can't Load More Data");
+							return; 
 						}
 						var objectArray = [];
 						Ext.Array.each( result.data.children, function(object, index){
 							// console.log("The index: "+ index);
 							// console.log( object );
+						
 							var book = Ext.create('AM.model.Post', {  
 								created		:  			object.data.created	 											, 
 								permalink	: 			object.data.permalink											, 
@@ -77,7 +79,8 @@ Ext.define('AM.store.Posts', {
 								url				: 			object.data.url			 											,
 								name				: 			object.data.name			 											,
 								title			:				object.data.title		 											,
-								domain    : 			object.data.domain   										
+								domain    : 			object.data.domain   		,
+								is_normal_image_link : me.checkImageLink(object.data.url)								
 							});
 							objectArray.push( book );
 						});
@@ -90,22 +93,17 @@ Ext.define('AM.store.Posts', {
 						Ext.Msg.alert("Error Loading", "Can't Load Data");
 			    }
 			});
-		}
-		// 
-		// baseUrl : 'http://www.reddit.com/r/',
-		// hotSelector : '/hot.json',
-		// // 'http://www.reddit.com/r/nsfw/hot.json';
-		// proxy: {
-		// 	type: 'jsonp',
-		// 	url: 'someUrl',
-		// 	callbackKey: 'jsonp', 
-		// 	extraParams: {
-		// 		format: 'json'
-		// 	}
-		// }, 
-		// 
-		// reader: {
-		// 	type: 'json',
-		// 	root: 'data.children'
-		// }
+		},
+		
+		checkImageLink : function(url) {
+        var matching = url.match(/\.(svg|jpe?g|png|gif)(?:[?#].*)?$|(?:imgur\.com|www.quickmeme\.com\/meme|qkme\.me)\/([^?#\/.]*)(?:[?#].*)?(?:\/)?$/);
+        if (!matching) return '';
+        if (matching[1]) { // normal image link
+            return true;
+        }else{
+						return false ;
+				}	
+ 
+    }
+		
 });

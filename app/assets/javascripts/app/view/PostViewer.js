@@ -46,6 +46,8 @@ Ext.define('AM.view.PostViewer', {
                         }
                         return Ext.Date.format(value, 'M j, Y, g:i a');
                     }
+
+
                 }
              )
         });
